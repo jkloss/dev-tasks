@@ -1,4 +1,4 @@
-package pl.jkloss.tasks.taskTwo;
+package pl.jkloss.tasks.two;
 
 class Main {
 
