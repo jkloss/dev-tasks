@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pl.jkloss</groupId>
+    <artifactId>lsnTasks</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-a</id>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>pl.jkloss.tasks.taskOne.Main</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <finalName>taskOne.jar</finalName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-b</id>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>pl.jkloss.tasks.taskTwo.Main</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <finalName>taskTwo.jar</finalName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-b</id>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>pl.jkloss.tasks.taskThree.Main</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <finalName>taskThree.jar</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
