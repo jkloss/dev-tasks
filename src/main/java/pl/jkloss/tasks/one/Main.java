@@ -8,7 +8,7 @@ import java.util.List;
 final class Main {
 
     public static void main(String[] args) {
-        System.out.println("Insert one-line, space separated, integer values (e.g. 1, 2, 3, 4)");
+        System.out.println("Insert one-line, space separated, integer values (e.g. 1 2 3 4)");
         List<Integer> values = Commons.loadInput2IntegerList();
         CustomStatistics customStatistics =
                 StreamEx.of(values)
