@@ -1,11 +1,14 @@
 package pl.jkloss.tasks.one;
 
 import one.util.streamex.StreamEx;
+import org.apache.commons.lang3.StringUtils;
 import pl.jkloss.tasks.Commons;
 
 import java.util.List;
 
 final class Main {
+
+    private static final String LIST_REPLACEMENT_REGEX = "[\\[\\],]";
 
     public static void main(String[] args) {
         System.out.println("Insert one-line, space separated, integer values (e.g. 1 2 3 4)");
@@ -15,10 +18,16 @@ final class Main {
                         .distinct()
                         .sorted()
                         .toListAndThen(CustomStatistics::new);
-        Commons.displayIntegerList(customStatistics.getResultList());
+        displayIntegerList(customStatistics.getResultList());
         System.out.println("count: " + values.size());
         System.out.println("distinct: " + customStatistics.getCount());
         System.out.println("min: " + customStatistics.getMin());
         System.out.println("max: " + customStatistics.getMax());
+    }
+
+    private static void displayIntegerList(List<Integer> list) {
+        String listAsString = list.toString();
+        String listToDisplay = listAsString.replaceAll(LIST_REPLACEMENT_REGEX, StringUtils.EMPTY);
+        System.out.println(listToDisplay);
     }
 }
