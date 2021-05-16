@@ -1,10 +1,16 @@
 package pl.jkloss.tasks.one;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import one.util.streamex.StreamEx;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;
 
+@Getter
+@EqualsAndHashCode
+@ToString
 class CustomStatistics {
 
     private final int max;
@@ -24,21 +30,5 @@ class CustomStatistics {
         return StreamEx.of(source)
                 .mapToInt(Integer::intValue)
                 .summaryStatistics();
-    }
-
-    public int getMax() {
-        return max;
-    }
-
-    public int getMin() {
-        return min;
-    }
-
-    public long getCount() {
-        return count;
-    }
-
-    public List<Integer> getResultList() {
-        return resultList;
     }
 }
