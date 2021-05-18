@@ -5,6 +5,8 @@ import one.util.streamex.StreamEx;
 import java.util.*;
 import java.util.Map.Entry;
 
+import static java.util.Objects.requireNonNull;
+
 class GraphsCounter {
 
     private final Map<Integer, Boolean> visited = new HashMap<>();
@@ -17,6 +19,7 @@ class GraphsCounter {
     }
 
     public static int countFor(List<Entry<Integer, Integer>> sourcePairs) {
+        requireNonNull(sourcePairs, "sourcePairs must not be null");
         GraphsCounter graphsCounter = new GraphsCounter(sourcePairs);
         return graphsCounter.count();
     }
@@ -26,7 +29,7 @@ class GraphsCounter {
         int counter = 0;
         for (Entry<Integer, Boolean> entry : visited.entrySet()) {
             if (!entry.getValue()) {
-                dfs(entry.getKey());
+                markAsVisitedAndSearch(entry.getKey());
                 counter++;
             }
         }
@@ -48,10 +51,10 @@ class GraphsCounter {
         });
     }
 
-    private void dfs(int vertex) {
+    private void markAsVisitedAndSearch(int vertex) {
         visited.put(vertex, true);
         StreamEx.of(accumulator.get(vertex))
                 .remove(visited::get)
-                .forEach(this::dfs);
+                .forEach(this::markAsVisitedAndSearch);
     }
 }
