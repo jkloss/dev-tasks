@@ -100,7 +100,7 @@
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
                             <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>taskThree</finalName>
+                            <finalName>thirdTask</finalName>
                         </configuration>
                         <phase>package</phase>
                         <goals>
