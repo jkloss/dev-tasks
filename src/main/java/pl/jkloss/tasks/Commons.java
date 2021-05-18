@@ -9,22 +9,17 @@ import java.util.Scanner;
 
 public final class Commons {
 
-    private static final Scanner scanner = new Scanner(System.in);
     private static final Splitter splitter = configureSplitter();
 
     private Commons() {
     }
 
-    public static List<Integer> loadInput2IntegerList() {
+    public static List<Integer> loadInput2IntegerList(Scanner scanner) {
         String input = scanner.nextLine();
         List<String> splitInputValues = splitter.splitToList(input);
         return StreamEx.of(splitInputValues)
                 .map(Integer::parseInt)
                 .toList();
-    }
-
-    public static Scanner getScanner() {
-        return scanner;
     }
 
     private static Splitter configureSplitter() {

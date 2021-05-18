@@ -11,19 +11,20 @@ import java.util.Scanner;
 class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = Commons.getScanner();
-        System.out.println("Insert number of lines that will represent " +
-                "a connection between two vertices in a graph");
-        int numberOfLines = Integer.parseInt(scanner.nextLine());
-        List<Entry<Integer, Integer>> pairs = new ArrayList<>();
-        for (int i = 0; i < numberOfLines; i++) {
-            System.out.println("Insert one-line, space separated pair of two vertices in a graph");
-            List<Integer> inputAsList = Commons.loadInput2IntegerList();
-            Entry<Integer, Integer> element = mapInput2Entry(inputAsList);
-            pairs.add(element);
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Insert number of lines that will represent " +
+                    "a connection between two vertices in a graph");
+            int numberOfLines = Integer.parseInt(scanner.nextLine());
+            List<Entry<Integer, Integer>> pairs = new ArrayList<>();
+            for (int i = 0; i < numberOfLines; i++) {
+                System.out.println("Insert one-line, space separated pair of two vertices in a graph");
+                List<Integer> inputAsList = Commons.loadInput2IntegerList(scanner);
+                Entry<Integer, Integer> element = mapInput2Entry(inputAsList);
+                pairs.add(element);
+            }
+            GraphsCounter graphsCounter = new GraphsCounter(pairs);
+            System.out.println(graphsCounter.count());
         }
-        GraphsCounter graphsCounter = new GraphsCounter(pairs);
-        System.out.println(graphsCounter.count());
     }
 
     private static Entry<Integer, Integer> mapInput2Entry(List<Integer> inputAsList) {

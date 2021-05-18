@@ -1,5 +1,7 @@
 package pl.jkloss.tasks.three;
 
+import one.util.streamex.StreamEx;
+
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -17,9 +19,9 @@ class GraphsCounter {
     public int count() {
         addEdges();
         int counter = 0;
-        for (Integer vertex : visited.keySet()) {
-            if (!visited.get(vertex)) {
-                dfs(vertex);
+        for (Entry<Integer, Boolean> entry : visited.entrySet()) {
+            if (!entry.getValue()) {
+                dfs(entry.getKey());
                 counter++;
             }
         }
@@ -43,10 +45,8 @@ class GraphsCounter {
 
     private void dfs(int vertex) {
         visited.put(vertex, true);
-        for (Integer value : accumulator.get(vertex)) {
-            if (!visited.get(value)) {
-                dfs(value);
-            }
-        }
+        StreamEx.of(accumulator.get(vertex))
+                .remove(visited::get)
+                .forEach(this::dfs);
     }
 }
