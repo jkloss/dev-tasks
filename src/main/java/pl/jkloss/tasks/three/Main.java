@@ -25,8 +25,7 @@ class Main {
                 Entry<Integer, Integer> element = mapInput2Entry(inputAsList);
                 pairs.add(element);
             }
-            GraphsCounter graphsCounter = new GraphsCounter(pairs);
-            System.out.println(graphsCounter.count());
+            System.out.println(GraphsCounter.countFor(pairs));
         }
     }
 

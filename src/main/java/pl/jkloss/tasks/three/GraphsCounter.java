@@ -10,13 +10,18 @@ class GraphsCounter {
     private final Map<Integer, Boolean> visited = new HashMap<>();
     private final Map<Integer, Set<Integer>> accumulator = new HashMap<>();
 
-    private final List<Entry<Integer, Integer>> elements;
+    private final List<Entry<Integer, Integer>> pairs;
 
-    public GraphsCounter(List<Entry<Integer, Integer>> elements) {
-        this.elements = elements;
+    private GraphsCounter(List<Entry<Integer, Integer>> pairs) {
+        this.pairs = pairs;
     }
 
-    public int count() {
+    public static int countFor(List<Entry<Integer, Integer>> sourcePairs) {
+        GraphsCounter graphsCounter = new GraphsCounter(sourcePairs);
+        return graphsCounter.count();
+    }
+
+    private int count() {
         addEdges();
         int counter = 0;
         for (Entry<Integer, Boolean> entry : visited.entrySet()) {
@@ -29,7 +34,7 @@ class GraphsCounter {
     }
 
     private void addEdges() {
-        elements.forEach(entry -> {
+        pairs.forEach(entry -> {
             Integer source = entry.getKey();
             Integer target = entry.getValue();
             accumulator.putIfAbsent(source, new HashSet<>());
